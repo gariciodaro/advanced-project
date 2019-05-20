@@ -1,0 +1,78 @@
+
+% ==============================================================================
+% START: Preamble
+% ==============================================================================
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[british,UKenglish,USenglish]{babel}
+\usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex}
+\usepackage{graphicx}
+\usepackage[inner=3cm,outer=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{subcaption}
+\usepackage{url}
+\usepackage[title]{appendix}
+% \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+
+%\usepackage{biblatex}
+% Override hyper reference default configurations
+\hypersetup{colorlinks=true,linkcolor=blue,filecolor=magenta,urlcolor=cyan}
+\urlstyle{same}
+
+\addbibresource{references.bib} % Input references by file
+\graphicspath{{images/}} % Set path for image preloading
+
+\title{
+    {\includegraphics[scale=0.15]{logo-black.png}} \\
+    \vspace{1.4cm}
+    {\large \textbf{ADVANCED PROJECT I}} \\
+    {\large \textbf{One Step Forecast of the Ether Criptocurrency}} \\
+}
+
+\vspace{1.4cm}
+\author{\textit{By Gari Ciodaro Guerra}\\[0.2cm]{\small Advisor: Prof. Dr. Herbert Jaeger}}
+\date{May 20, 2019}
+
+\vspace{1.4cm}
+% ==============================================================================
+% END: Preamble
+% ==============================================================================
+
+% ==============================================================================
+% START: Scripts
+% ==============================================================================
+\begin{document}
+\maketitle
+
+% Abstract
+\input{sections/abstract}
+\newpage
+
+% Introduction
+\input{sections/intro}
+
+% Contents
+\input{sections/contents}
+
+\clearpage
+\appendix
+\begin{appendices}
+\section{Code Repository}
+
+All the code implemented and utilized during the execution of the data workflow
+described in this report is available at the GitHub repository \href{https://github.com/ralflorent/bremen-big-data-challenge-2019}{https://github.com/ralflorent/bremen-big-data-challenge-2019}.
+
+\end{appendices}
+
+% References
+\clearpage
+\newpage
+\printbibliography
+
+\end{document}
+% ==============================================================================
+% END: Scripts
+% ==============================================================================
