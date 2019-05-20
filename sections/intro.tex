@@ -76,20 +76,21 @@ The \textbf{Deepblue Bot} uses APIs request every 30 minutes to Google and Twitt
 	
 \end{itemize}
 
-% Including figures
-\begin{figure}[htpb!] % Defines figure environment
-	\centering % Centers your figure
-	\includegraphics[width=\textwidth]{data/twitter.pdf} % Includes your figure and defines %the size
-	\caption{ Average Twitter sentiment score regarding the words Ether and Ethereum per day, data source in \cite{deepblueai}. Data for the beginning of 2019 not available.} % For your caption
-	\label{fig:twitter_plot} % If you want to label your figure for in-text references
-\end{figure}
 
-% Including figures
-\begin{figure}[htpb!] % Defines figure environment
-	\centering % Centers your figure
-	\includegraphics[width=\textwidth]{data/google.pdf} % Includes your figure and defines %the size
-	\caption{  Average Google trend relative popularity score regarding the words Ether and Ethereum per day, data source in \cite{deepblueai}. Data for the beginning of 2019 not available.} % For your caption
-	\label{fig:google_plot} % If you want to label your figure for in-text references
+
+\begin{figure}[!h]
+	\centering
+	\begin{minipage}[b]{0.85\textwidth}
+		\includegraphics[width=\textwidth]{data/twitter.pdf}
+		\caption{ Average Twitter sentiment score regarding the words Ether and Ethereum per day, data source in \cite{deepblueai}. Data for the beginning of 2019 not available.} 
+		\label{fig:twitter_plot}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.85\textwidth}
+		\includegraphics[width=\textwidth]{data/google.pdf}
+		\caption{  Average Google trend relative popularity score regarding the words Ether and Ethereum per day, data source in \cite{deepblueai}. Data for the beginning of 2019 not available.}
+		\label{fig:google_plot}
+	\end{minipage}
 \end{figure}
 
 

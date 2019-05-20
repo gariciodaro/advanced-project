@@ -1,7 +1,4 @@
 
-% ==============================================================================
-% START: Methods, Results, Discussions, Conclusion
-% ==============================================================================
 \section{Prior considerations}
 
 
@@ -44,7 +41,7 @@ Using cross-validation on time series is different from other regression problem
 
 \begin{figure}[htpb!] % Defines figure environment
 	\centering % Centers your figure
-	\includegraphics[width=0.8\textwidth]{data/cv_time.png} % Includes your figure and defines %the size
+	\includegraphics[width=0.4\textwidth]{data/cv_time.png} % Includes your figure and defines %the size
 	\caption{\textit{ Rolling forecasting origin scheme. One-step forecasts. The blue points are training sets,the red points are test sets and the grey points are ignored.} (taken from \cite{hyndman2006another} )} % For your caption
 	\label{fig:cross validation} % If you want to label your figure for in-text references
 \end{figure}
@@ -232,7 +229,7 @@ A linear decision function was not appropriated for the variable $E$, so a non l
 
 \begin{figure}[htpb!] % Defines figure environment
 	\centering % Centers your figure
-	\includegraphics[width=0.70\textwidth]{data/nn.png} % Includes your figure and defines %the size
+	\includegraphics[width=0.4\textwidth]{data/nn.png} % Includes your figure and defines %the size
 	\caption{Schematic view of a general feed forward neuron network. Taken from  \cite{ml_jacobs_h}.} % For your caption
 	\label{fig:nn} % If you want to label your figure for in-text references
 \end{figure}
@@ -247,7 +244,7 @@ H_{units}*lag_{max}+H_{units}<N/10
 \label{eq:4_7}
 \end{equation}
 
-Following equation \ref{eq:4_7} is possible to reasonable select a maximum number of units in the hidden layer. Beyond this point setting a testing environment as the one shown in Ridge regression is futile (please see \textit{Comments on $\Theta$} section). Table \ref{table:mlp_at} contains some of the parameters implemented  for $\mathcal{N}$ ordered by test $\%(sMAPE)$, we see that best parameters seems to be $H_{units}=6$, $Lag_{max}=15$ which is $3.64\%$  better than the \textit{Naive forecast sMAPE: 58.61 $\%$.}
+Following equation \ref{eq:4_7} is possible to reasonable select a maximum number of units in the hidden layer. Beyond this point setting a testing environment as the one shown in Ridge regression is futile (please see \textit{Comments on $\Theta$} section). Table \ref{table:mlp_at} contains some of the parameters implemented  for $\mathcal{N}$ ordered by test $\%(sMAPE)$, we see that best parameters seems to be $H_{units}=6$, $Lag_{max}=15$ which is $3.64\%$  better than the \textit{Naive forecast sMAPE: 58.61 $\%$.}\\
 
 
 \begin{table}[h!]
@@ -299,18 +296,18 @@ Following equation \ref{eq:4_7} is possible to reasonable select a maximum numbe
 
 For simple exponential smoothing\footnote{Implemented using \cite{Statsmodels}} trend calculation, the parameter $\beta$ in Equation \ref{eq:SES} determines the amount of exponential decrease of the influence of past observations over the current time step. For small values of $\beta$ more history of past observations weight in the current time step value, whereas a large $\beta$ would give more influence of observations near the present. In Figure \ref{fig:tren_simple_exp} we can see different values of the smoothing factor $\beta$. A smoothing parameter of 0.5 was selected, and the process of decomposition describe in the previous section was repeated. Note that no attempt for calculating the seasonality was carried since this is a property of the time series itself, independent of the tool used for modeling the trend.
 
-\begin{figure}[htpb!] % Defines figure environment
+\begin{figure}[h!] % Defines figure environment
 	\centering % Centers your figure
-	\includegraphics[width=0.85\textwidth]{data/trend_SES.pdf} % Includes your figure and defines %the size
+	\includegraphics[width=0.75\textwidth]{data/trend_SES.pdf} % Includes your figure and defines %the size
 	\caption{Simple Exponential Smoothing for year 2019} % For your caption
 	\label{fig:tren_simple_exp} % If you want to label your figure for in-text references
 \end{figure}
 
 By inspecting Figure \ref{fig:tren_simple_exp_error} where the derived error $E^{ses}$ is plotted a noise behavior is clearly discernible as consequence we  decided to apply  a two tail statistical test over the null $H_{o}$ that $y=T^{ses}+E^{ses}$ and $y'=T^{ses}$ are in fact the same random variable.
 
-\begin{figure}[htpb!] % Defines figure environment
+\begin{figure}[h!] % Defines figure environment
 	\centering % Centers your figure
-	\includegraphics[width=\textwidth]{data/Residual_error_u_SES.pdf} % Includes your figure and defines %the size
+	\includegraphics[width=0.85\textwidth]{data/Residual_error_u_SES.pdf} % Includes your figure and defines %the size
 	\caption{$E_{t}$ Using exponential smoothing for the $T_{t}$} % For your caption
 	\label{fig:tren_simple_exp_error} % If you want to label your figure for in-text references
 \end{figure}
@@ -336,7 +333,7 @@ In Figure \ref{fig:trendses} we see cross-validation plot for $lag_{max}$ optimi
 
 \begin{figure}[htpb!] % Defines figure environment
 	\centering % Centers your figure
-	\includegraphics[width=\textwidth]{data/trend_ses.pdf} 
+	\includegraphics[width=0.8\textwidth]{data/trend_ses.pdf} 
 	\caption{\textbf{Random variable} $T^{ses}$ from Simple exponential smoothing \textbf{Model}: Ridge regression. \textbf{$CV_{Rol}$}=100. $\alpha$=0, $\theta$=$lag$.  } 
 	\label{fig:trendses} % If you want to label your figure for in-text references
 \end{figure}
@@ -431,21 +428,16 @@ where the  \emph{learning rate} is the gradient proportional constant for minimi
 
 \begin{figure}[h!]
 	\centering
-	\begin{minipage}[b]{\textwidth}
+	\begin{minipage}[b]{0.8\textwidth}
 		\includegraphics[width=0.9\textwidth]{data/2018_hys_senti.pdf}
 		\caption{ $hl_{t}$ for 2018-01-19  to  2018-12-03 training set.}
 		\label{fig:sent2018}
 	\end{minipage}
 	\hfill
-	\begin{minipage}[b]{\textwidth}
+	\begin{minipage}[b]{0.8\textwidth}
 		\includegraphics[width=0.9\textwidth]{data/2019_hys_senti.pdf}
 		\caption{$hl_{t}$  for 2019-03-16 to 2019-05-01 test set.}
 		\label{fig:sent2019}
-	\end{minipage}
-	\begin{minipage}[b]{\textwidth}
-		\includegraphics[width=0.9\textwidth]{data/hys_fin.pdf}
-		\caption{Scaled ether price  for 2019-03-16 to 2019-05-01 test set.}
-		\label{fig:s2019}
 	\end{minipage}
 \end{figure}
 
