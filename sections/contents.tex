@@ -41,7 +41,7 @@ Using cross-validation on time series is different from other regression problem
 
 \begin{figure}[htpb!] % Defines figure environment
 	\centering % Centers your figure
-	\includegraphics[width=0.4\textwidth]{data/cv_time.png} % Includes your figure and defines %the size
+	\includegraphics[width=0.4\textwidth]{notebooks/data/cv_time.png} % Includes your figure and defines %the size
 	\caption{\textit{ Rolling forecasting origin scheme. One-step forecasts. The blue points are training sets,the red points are test sets and the grey points are ignored.} (taken from \cite{hyndman2006another} )} % For your caption
 	\label{fig:cross validation} % If you want to label your figure for in-text references
 \end{figure}
@@ -90,7 +90,7 @@ In Figure \ref{fig:mv_2016_2019} we can see moving averages $odd \in [87,150,297
 
 \begin{figure}[!htb]
 	\center{\includegraphics[width=\textwidth]
-		{data/movingAverages.pdf}}
+		{notebooks/data/movingAverages.pdf}}
 	\caption{\label{fig:mv_2016_2019}  moving averages exploration}
 \end{figure}
 
@@ -100,12 +100,12 @@ By subtracting $y$ and $T^{mv}$ we obtain the combination $S+E$, we call this su
 \begin{figure}[!tbp]
 	\centering
 	\begin{minipage}[b]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{data/seasonal_index.pdf}
+		\includegraphics[width=\textwidth]{notebooks/data/seasonal_index.pdf}
 		\caption{Seasonal indices.}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[b]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{data/seasonal_interpolation.pdf}
+		\includegraphics[width=\textwidth]{notebooks/data/seasonal_interpolation.pdf}
 		\caption{Seasonal interpolation.}
 		\label{fig:seasonal_interpolation}
 	\end{minipage}
@@ -122,7 +122,7 @@ We decided to perform a 2-tail t-statistics test between $y=T^{mv}+S$ and $y'=T^
 			\hline
 			RV & t-value & p-value \\ [0.5ex] 
 			\hline\hline
-			$P_{r}$,$P'_{r}$ & 0.27 & 0.78  \\ 
+			$y$,$y'$ & 0.27 & 0.78  \\ 
 			\hline
 		\end{tabular}
 		\caption{T-test for Seasonality.}
@@ -141,7 +141,7 @@ Finally, we obtain the $E$ by calculating the relationship  $E=y-T^{mv}$. Figure
 
 \begin{figure}[htpb!] % Defines figure environment
 	\centering % Centers your figure
-	\includegraphics[width=\textwidth]{data/Residual_error_u.pdf} % Includes your figure and defines %the size
+	\includegraphics[width=\textwidth]{notebooks/data/Residual_error_u.pdf} % Includes your figure and defines %the size
 	\caption{Error plot. $E$} % For your caption
 	\label{fig:error} % If you want to label your figure for in-text references
 \end{figure}
@@ -150,7 +150,7 @@ In figure \ref{fig:single_plot} we can observe the full decomposition based on m
 
 \begin{figure}[htpb!] % Defines figure environment
 	\centering % Centers your figure
-	\includegraphics[width=\textwidth]{data/single_plot.pdf} % Includes your figure and defines %the size
+	\includegraphics[width=\textwidth]{notebooks/data/single_plot.pdf} % Includes your figure and defines %the size
 	\caption{Single plot decomposition moving averages based.} % For your caption
 	\label{fig:single_plot} % If you want to label your figure for in-text references
 \end{figure}
@@ -178,14 +178,14 @@ Let us begin by trying to find the best $lag_{max}$ parameter using Rolling fore
 	\centering
 	
 	\begin{minipage}[b]{\textwidth}
-		\includegraphics[width=\textwidth]{data/error_sc_1_lag.pdf}
+		\includegraphics[width=\textwidth]{notebooks/data/error_sc_1_lag.pdf}
 		\caption{\textbf{Random variable} $E$ \textbf{Model}: Ridge regression \textbf{$CV_{Rol}$}=100 \textbf{$\alpha$}=0 $lag_{max}$ }
 		\label{fig:error_sc_1_lag}
 	\end{minipage}
 	
 	\hfill
 	\begin{minipage}[b]{\textwidth}
-		\includegraphics[width=\textwidth]{data/trend_sc_1_lag.pdf}
+		\includegraphics[width=\textwidth]{notebooks/data/trend_sc_1_lag.pdf}
 		\caption{\textbf{Random variable} $T_{t}$ \textbf{Model}: Ridge regression. \textbf{$CV_{Rol}$}=100. $\alpha$=0, $\theta$=$lag$, } % For your caption
 		\label{fig:trend_sc_1_lag}
 	\end{minipage}
@@ -198,13 +198,13 @@ In the case of $T^{mv}$ is clear that any model with more than one $lag$ outperf
 \begin{figure}[h!]
 	\centering
 	\begin{minipage}[b]{\textwidth}
-		\includegraphics[width=\textwidth]{data/error_sc_1_alpha.pdf}
+		\includegraphics[width=\textwidth]{notebooks/data/error_sc_1_alpha.pdf}
 		\caption{\textbf{Random variable} $E_{t}$ \textbf{Model}: Ridge regression. \textbf{$CV_{Rol}$}=100. $lag_{max}=3$, $\theta$=$\alpha$, }
 		\label{fig:error_sc_1_alpha}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[b]{\textwidth}
-		\includegraphics[width=\textwidth]{data/trend_sc_1_alpha.pdf}
+		\includegraphics[width=\textwidth]{notebooks/data/trend_sc_1_alpha.pdf}
 		\caption{\textbf{Random variable} $T_{t}$ \textbf{Model}: Ridge regression. \textbf{$CV_{Rol}$}=100. $lag_{max}=3$, $\theta$=$\alpha$, }  % For your caption
 		\label{fig:trend_sc_1_alpha}
 	\end{minipage}
@@ -229,7 +229,7 @@ A linear decision function was not appropriated for the variable $E$, so a non l
 
 \begin{figure}[htpb!] % Defines figure environment
 	\centering % Centers your figure
-	\includegraphics[width=0.4\textwidth]{data/nn.png} % Includes your figure and defines %the size
+	\includegraphics[width=0.4\textwidth]{notebooks/data/nn.png} % Includes your figure and defines %the size
 	\caption{Schematic view of a general feed forward neuron network. Taken from  \cite{ml_jacobs_h}.} % For your caption
 	\label{fig:nn} % If you want to label your figure for in-text references
 \end{figure}
@@ -298,7 +298,7 @@ For simple exponential smoothing\footnote{Implemented using \cite{Statsmodels}} 
 
 \begin{figure}[h!] % Defines figure environment
 	\centering % Centers your figure
-	\includegraphics[width=0.75\textwidth]{data/trend_SES.pdf} % Includes your figure and defines %the size
+	\includegraphics[width=0.75\textwidth]{notebooks/data/trend_SES.pdf} % Includes your figure and defines %the size
 	\caption{Simple Exponential Smoothing for year 2019} % For your caption
 	\label{fig:tren_simple_exp} % If you want to label your figure for in-text references
 \end{figure}
@@ -307,7 +307,7 @@ By inspecting Figure \ref{fig:tren_simple_exp_error} where the derived error $E^
 
 \begin{figure}[h!] % Defines figure environment
 	\centering % Centers your figure
-	\includegraphics[width=0.85\textwidth]{data/Residual_error_u_SES.pdf} % Includes your figure and defines %the size
+	\includegraphics[width=0.85\textwidth]{notebooks/data/Residual_error_u_SES.pdf} % Includes your figure and defines %the size
 	\caption{$E_{t}$ Using exponential smoothing for the $T_{t}$} % For your caption
 	\label{fig:tren_simple_exp_error} % If you want to label your figure for in-text references
 \end{figure}
@@ -333,7 +333,7 @@ In Figure \ref{fig:trendses} we see cross-validation plot for $lag_{max}$ optimi
 
 \begin{figure}[htpb!] % Defines figure environment
 	\centering % Centers your figure
-	\includegraphics[width=0.8\textwidth]{data/trend_ses.pdf} 
+	\includegraphics[width=0.8\textwidth]{notebooks/data/trend_ses.pdf} 
 	\caption{\textbf{Random variable} $T^{ses}$ from Simple exponential smoothing \textbf{Model}: Ridge regression. \textbf{$CV_{Rol}$}=100. $\alpha$=0, $\theta$=$lag$.  } 
 	\label{fig:trendses} % If you want to label your figure for in-text references
 \end{figure}
@@ -377,13 +377,13 @@ y^{ses}_{t}=T^{ses}_{t}
 \begin{figure}[h!]
 	\centering
 	\begin{minipage}[b]{\textwidth}
-		\includegraphics[width=\textwidth]{data/pre_2019_mv.pdf}
+		\includegraphics[width=\textwidth]{notebooks/data/pre_2019_mv.pdf}
 		\caption{$y^{mv}$ for 2019-03 to 2019-05}
 		\label{fig:compa1}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[b]{\textwidth}
-		\includegraphics[width=\textwidth]{data/pre_2019_ses.pdf}
+		\includegraphics[width=\textwidth]{notebooks/data/pre_2019_ses.pdf}
 		\caption{$y^{ses}$ for 2019-03 to 2019-05}
 		\label{fig:compa2}
 	\end{minipage}
@@ -411,7 +411,7 @@ hl_{t}=y_{t+1}-y_{t}=Tr_{t}+I_{t}+Tw_{t}
 
 
 
-A \emph{Decision tree regressor} is a supervised machine learning algorithm that splits the target value space into sectors called \emph{leafs} by continuously splitting the feature value space into binary \emph{branches}. By increasing the maximum level of binary splitting of the features, we get more leaves or terminal nodes, meaning that the hypercube containing target variable get smaller producing easily overfitted models, for this reason, Decision Trees are considered weak estimators. an \emph{Assembly methods} as \emph{Boosting} combine many of those differently weak estimators in sequence based on the residual of the previous week estimators. A complete technical explanation can be found in \cite{james2013introduction}. As explain section 1.2, we only had data for social media analysis from 2018-01-19 to 2018-12-03 from 2019-03-16 to 2019-05-01. Since the data was splited in this manner, we decided to train \emph{Boosting Decision tree regressor}\footnote{ We used the sklearn impementation in \cite{scikitlearn_bo} } on the data 2018 data interval, and then run a single test of the 2019 interval. For parameter optimization we used grid search sklearn implementation \cite{scikitlearn_grid}.\\
+A \emph{Decision tree regressor} is a supervised machine learning algorithm that splits the target value space into sectors called \emph{leafs} by continuously splitting the feature value space into binary \emph{branches}. By increasing the maximum level of binary splitting of the features, we get more leaves or terminal nodes, meaning that the hypercube containing target variable get smaller producing easily overfitted models, for this reason, Decision Trees are considered weak estimators. \emph{Assembly methods} as \emph{Boosting} combine many of those weak estimators in a sequence based on the residual of the previous one. A complete technical explanation can be found in \cite{james2013introduction}. As explain section 1.2, we only had data for social media analysis from 2018-01-19 to 2018-12-03 from 2019-03-16 to 2019-05-01. Since the data was split in this manner, we decided to train \emph{Boosting Decision tree regressor}\footnote{ We used the sklearn implementation in \cite{scikitlearn_bo} } on the data 2018 data interval, and then run a single test of the 2019 range. For parameter optimization, we used grid search sklearn implementation \cite{scikitlearn_grid}.\\
 
 \textbf{Parameters of grid search:}
 
@@ -422,20 +422,20 @@ A \emph{Decision tree regressor} is a supervised machine learning algorithm that
 \end{itemize}
 
 
-where the  \emph{learning rate} is the gradient proportional constant for minimizing the loss function in the case de mean square error on each subsequent tree. \emph{max depth} is the maximum level of splitting of the feature vectors per weak estimator, and \emph{n estimators} is the number of weak estimators to use. Using cross 2-fold cross validation we the best paramters are: \emph{learning rate}: 0.01, \emph{max depth}: 25, \emph{n estimators}: 5.
+where the  \emph{learning rate} is the gradient proportional constant for minimizing the loss function in the case de mean square error on each subsequent tree. \emph{max depth} is the maximum level of splitting of the feature vectors per weak estimator, and \emph{n estimators} is the number of weak estimators to use. Using cross 2-fold cross validation we the best parameters are: \emph{learning rate}: 0.01, \emph{max depth}: 25, \emph{n estimators}: 5.
 
 
 
 \begin{figure}[h!]
 	\centering
 	\begin{minipage}[b]{0.8\textwidth}
-		\includegraphics[width=0.9\textwidth]{data/2018_hys_senti.pdf}
+		\includegraphics[width=0.9\textwidth]{notebooks/data/2018_hys_senti.pdf}
 		\caption{ $hl_{t}$ for 2018-01-19  to  2018-12-03 training set.}
 		\label{fig:sent2018}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[b]{0.8\textwidth}
-		\includegraphics[width=0.9\textwidth]{data/2019_hys_senti.pdf}
+		\includegraphics[width=0.9\textwidth]{notebooks/data/2019_hys_senti.pdf}
 		\caption{$hl_{t}$  for 2019-03-16 to 2019-05-01 test set.}
 		\label{fig:sent2019}
 	\end{minipage}
