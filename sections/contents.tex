@@ -58,13 +58,13 @@ y_{t}=S_{t}+T_{t}+E_{t}
 \label{eq:4_1}
 \end{equation}
 
-Where $S,T,E$ stand for \textit{Seasonal}, \textit{Trend} and \textit{Error}. To estimate $T$ we explored two methods, namely \emph{odd moving averages} and \emph{simple exponential smoothing}. \emph{odd moving averages} is governed by Equation \ref{eq:4_2}, where $y_{t}$ is the price at time-step $t \in \mathbb{N}$, $odd \in \mathbb{N}$ the parameter of the steps averages and $N$ the maximum index of the series which can be regarded as the present.
+Where $S,T,E$ stand for \textit{Seasonal}, \textit{Trend} and \textit{Error}. To estimate $T$ we explored two methods, namely \emph{odd moving averages} and \emph{simple exponential smoothing}. \emph{odd moving averages} is governed by Equation \ref{eq:4_2}, where $y_{t}$ is the price at time-step $t \in \mathbb{N}$, $odd \in \mathbb{N}$ the parameter of the steps averages and $N$ the maximum index of the series which can be regarded as the present. In equation \ref{eq:4_2}, the limits of the summation must be approximated to the smallest integer.
 
 
 \begin{equation}
 T^{mv}_{t}(odd)=\begin{cases}
-\sum_{i=(y_{t}-odd/2)}^{y_{t}+odd/2} \frac{y_{i} }{odd} , & \text{if $t<odd$}.\\
-\sum_{i=(y_{t}-odd/2)}^{N} \frac{y_{i} }{odd}, & \text{otherwise}.
+\sum_{i=y_{t}-odd/2}^{y_{t}+odd/2} \frac{y_{i} }{odd} , & \text{if $t<odd$}.\\
+\sum_{i=y_{t}-odd/2}^{N} \frac{y_{i} }{odd}, & \text{otherwise}.
 \end{cases}
 \label{eq:4_2}
 \end{equation}
@@ -161,7 +161,7 @@ In figure \ref{fig:single_plot} we can observe the full decomposition based on m
 
 In this section we try to model the component $T^{mv}$ and $E$ of Equation \ref{eq:4_3} using the decision functions $\mathcal{D}$ based on \emph{Ridge regression} \footnote{Implemented using \cite{scikitlearn22}}.\\
 
-Ridge regression is a supervised learning algorithm that minimized the quadric loss to fit a linear relationship between the features vector and the target variable. Using single value decomposition, the minimum quadric loss parameters can be encoded in a $W'_{opt} \in \mathbb{R}^{m \times m}$ matrix, where $m$ is the number of features. In Equation \ref{eq:4_4} $\Phi$ is a matrix of $\mathbb{R}^{N \times m}$ where $N$ is the number of data points. $Z$ is a column vector $\mathbb{R}^{N}$ containing the target variable. $\alpha \in {\rm I\!R^{>0}}$ is a penalization factor over the fitted parameters to control the variance of the model.\\
+Ridge regression is a supervised learning algorithm that minimized the quadric loss to fit a linear relationship between the features vector and the target variable. Using single value decomposition, the minimum quadric loss parameters can be encoded in a $W'_{opt} \in \mathbb{R}^{m \times 1}$ matrix, where $m$ is the number of features. In Equation \ref{eq:4_4} $\Phi$ is a matrix of $\mathbb{R}^{N \times m}$ where $N$ is the number of data points. $Z$ is a column vector $\mathbb{R}^{N}$ containing the target variable. $\alpha \in {\rm I\!R^{>0}}$ is a penalization factor over the fitted parameters to control the variance of the model.\\
 
 
 \begin{equation}
@@ -217,7 +217,7 @@ The minimum testing error is around $58\%$ for  $E$ which is a sign that perhaps
 
 
 
-We now proceed to find the best $\alpha$ giving that$lag_{max}=3$ is the optimal parameter for $E$. For the sake of simplicity, we also set $lag_{max}=3$ to $T^{mv}$. The results can be appreciated in Figure \ref{fig:error_sc_1_alpha} and \ref{fig:trend_sc_1_alpha}.\\ 
+We now proceed to find the best $\alpha$ giving that $lag_{max}=3$ is the optimal parameter for $E$. For the sake of simplicity, we also set $lag_{max}=3$ to $T^{mv}$. The results can be appreciated in Figure \ref{fig:error_sc_1_alpha} and \ref{fig:trend_sc_1_alpha}.\\ 
 
 The best models for both random variables are the ones with no regularization, as commented in the previous sections $\alpha$ is used to decrease the variance on the training set while theoretically increasing the generalization performance, nonetheless in our particular task the model has already low variance before using $\alpha$, so its implementation is actually detrimental for performance. Another reason for this behavior can be attributed, in the case of $E_{t}$, to a very none linear problem, so that linear regression is not able to properly learn the patterns in the training data. \\
 
@@ -234,7 +234,7 @@ A linear decision function was not appropriated for the variable $E$, so a non l
 	\label{fig:nn} % If you want to label your figure for in-text references
 \end{figure}
 
-We begin this modeling task by trying to implement the \emph{gradient-decent} algorithm explained in Machine learning lecture notes, where the matrices $W_{1}$  and $W_{0}$ are randomly initialized and the \emph{back propagation} algorithm is used to estimate the gradient of the loss function, which will in term be used to solve the minimization of loss problem. In this approach an update of the weighting matrices occurs once all the data point have bee cover and is proportional to a \emph{learning rate} $\lambda \in \mathbb{R}^{>0}$, if this update occurs before all the data points have been covered, we have \emph{batch gradient decent} implementation, if this \emph{batch} of data points is randomly selected then we have \emph{stochastic gradient decent}. Unfortunately, this implementation uses standard $cpu$ hardware to make gradient updates (also know as \emph{epochs}), making it very slow to converge. To bypass this inconvenience we decided to use \emph{Keras} with \emph{Tensor-flow}\cite{chollet2015keras} to speed up the convergence time using \emph{gpu} hardware while maintaining the same theoretical premises explained in the lecture notes, this means that \emph{gradient decent} was forced(by setting the scholastic gradient descent with batch size equal to the number of data points, and preventing the shuffling of data points) with a fixed  $\lambda$.\\
+We begin this modeling task by trying to implement the \emph{gradient-decent} algorithm explained in Machine learning lecture notes, where the matrices $W_{1}$  and $W_{0}$ are randomly initialized and the \emph{back propagation} algorithm is used to estimate the gradient of the loss function, which will in term be used to solve the minimization of loss problem. In this approach an update of the weighting matrices occurs once all the data point have been cover and is proportional to a \emph{learning rate} $\lambda \in \mathbb{R}^{>0}$, if this update occurs before all the data points have been covered, we have \emph{batch gradient descent} implementation. Unfortunately, this implementation uses standard $cpu$ hardware to make gradient updates (also know as \emph{epochs}), making it very slow to converge. To bypass this inconvenience we decided to use \emph{Keras} with \emph{Tensor-flow}\cite{chollet2015keras} to speed up the convergence time using \emph{gpu} hardware while maintaining the same theoretical premises explained in the lecture notes, this means that \emph{gradient descent} was forced(by setting the scholastic gradient descent with batch size equal to the number of data points, and preventing the shuffling of data points) with a fixed  $\lambda$.\\
 
 We set somewhat arbitrarily the rule in Equation \ref{eq:4_7}, to have a simple guide for testing some models.
 
@@ -283,7 +283,7 @@ Following equation \ref{eq:4_7} is possible to reasonable select a maximum numbe
 
 \textbf{some comments on $\Theta$}
 \begin{itemize}
-	\item A somehow rational approach would be to increment one by one the number of units in the hidden layer and then evaluate the cross-validation error. Each of this steps would have the same $\lambda$ as well as the same number of iterations to be interpretable by us, however as we increase the number hidden units, keeping the same $\lambda$ might not be appropriate giving that the vector of parameters $\phi$ has increased in dimension, this increase might cause the gradient descent update of state not as effective, which in term would might cause the number of iterations to be insufficient for convergence.
+	\item A rational approach would be to increment one by one the number of units in the hidden layer and then evaluate the cross-validation error. Each of this steps would have the same $\lambda$ as well as the same number of iterations to be interpretable by us, however as we increase the number hidden units, keeping the same $\lambda$ might not be appropriate giving that the vector of parameters $\phi$ has increased in dimension, this increase might cause the gradient descent update of state not as effective, which in term would might cause the number of iterations to be insufficient for convergence.
 	\item Setting extreme small values $\lambda$ to cover most scenarios requires massive amount computational time, setting $\lambda$ relative big, will cause not convergence.
 	\item Giving the random nature of the initialization of weighting matrices and the fact that gradient descent is very likely to wander around local minimal, compering in such straight forwards different manner architecture seems like undefined endeavor.
 \end{itemize}
@@ -405,7 +405,7 @@ y_{t+1}=y_{t}+ hl_{t}
 Equation \ref{eq:h} tell us that the level of hysteria is defined as $hl_{t}=y_{t+1}-y_{t}$. We also theorized that this random variable is not time dependent and that it is the direct consequence of what people express in social media. A final extra factor is the transitions per day $T_{r}$, which we believe is an indicator of the next volatility, the idea is that when a cryptocurrency owner start moving their digitals access over the blockchain from private wallets to exchange wallets, for example, it seems reasonable to think they are getting ready to sell it in exchange for \emph{fiat} as USD, which may put extra pressure over the price according to supply and demand schema. Combining all this hypothesis we arrive at Equation \ref{eq:h2} where $Tr$ is the number of transactions per day, $I$ is popularity on Google search, and $Tw$ is the popularity score on Twitter, for more details over these variables please see section 1.3.
 
 \begin{equation}
-hl_{t}=y_{t+1}-y_{t}=Tr_{t}+I_{t}+Tw_{t}
+hl_{t}=y_{t+1}-y_{t}=f(Tr_{t},I_{t},Tw_{t})
 \label{eq:h2}
 \end{equation}
 
@@ -451,12 +451,16 @@ The test $\%sMAPE$ on the price prediction for 2019  was $9.9\%$. The naive fore
 
 \section{Conclusions}
 
+
+
 \begin{itemize}
 	\item Unfortunately none of the implemented techniques were able to outperform the naive forecast. However, we still believe that through social media, the erratic behavior of the price can be predicted.
 	\item We believe that the reason for the somewhat disappointing results for social media comes from the fact that the scoring systems of sentiment analysis were poorly designed. Techniques related to natural language processing should be implemented.
 	\item Using Single layer perceptrons with enough processing power showed signs of being able to surpass the naive forecast.
 \end{itemize}
 
+\section{Comments on sections 4 and 5}
+The deadline for this project was on 20 of may, I had to rush in this final part. As soon as I got some time, I will re do those sections.
 
 % \begin{thebibliography}{1}
 % \bibitem{1}
